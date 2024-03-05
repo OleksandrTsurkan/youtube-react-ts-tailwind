@@ -8,7 +8,7 @@ type CategoryPillProps = {
   onSelect: (category: string) => void;
 };
 
-const TRANSLATE_AMOUNT;
+const TRANSLATE_AMOUNT = 200;
 
 export function CategoryPills({
   categories,
@@ -21,15 +21,25 @@ export function CategoryPills({
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (containerRef.current === null) return;
+    if (containerRef.current == null) return;
 
-    const observer = new ResizeObserver((entries) => {});
+    const observer = new ResizeObserver((entries) => {
+      const container = entries[0]?.target;
+      if (container == null) return;
+
+      setIsLeftVisible(translate > 0);
+      setIsRightVisible(
+        translate + container.clientWidth < container.scrollWidth
+      );
+    });
+
     observer.observe(containerRef.current);
+
     return () => {
       observer.disconnect();
     };
   }, [categories, translate]);
-  
+
   return (
     <div ref={containerRef} className="overflow-x-hidden relative">
       <div
