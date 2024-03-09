@@ -5,7 +5,7 @@ import { CategoryPills } from "./components/CategoryPills";
 import { categories } from "./data/home";
 import { PageHeader } from "./layouts/PageHeader";
 import { VideoGridItem } from "./components/VideoGridItem";
-// import { Sidebar } from "./layouts/Sidebar"
+import { Sidebar } from "./layouts/Sidebar";
 // import { SidebarProvider } from "./contexts/SidebarContext"
 
 export default function App() {
@@ -14,7 +14,7 @@ export default function App() {
     <div className="max-h-screen flex flex-col">
       <PageHeader />
       <div className="grid grid-cols-[auto,1fr] flex-grow-1 overflow-auto">
-        <div>Sidebar</div>
+        <Sidebar />
         <div className="owerflow-x-hidden px-8 pb-4">
           <div className="sticky wop-0 bg-white z-10 pb-4">
             <CategoryPills
